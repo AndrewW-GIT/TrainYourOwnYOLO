@@ -245,9 +245,9 @@ if __name__ == "__main__":
                 postfix=FLAGS.postfix,
             )
             y_size, x_size, _ = np.array(image).shape
+            # Change pd.append to pd.concat as pd.append is depreciated  in Pandas 1.40
             for single_prediction in prediction:
-                out_df = out_df.append(
-                    pd.DataFrame(
+             out_df = pd.concat([out_df, pd.DataFrame(
                         [
                             [
                                 os.path.basename(img_path.rstrip("\n")),
@@ -269,7 +269,8 @@ if __name__ == "__main__":
                             "y_size",
                         ],
                     )
-                )
+                    ], axis=0)             
+                
         end = timer()
         print(
             "Processed {} images in {:.1f}sec - {:.1f}FPS".format(
