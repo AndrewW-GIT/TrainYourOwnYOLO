@@ -15,9 +15,12 @@ from PIL import Image, ImageFont, ImageDraw
 from .yolo3.model import yolo_eval, yolo_body, tiny_yolo_body
 from .yolo3.utils import letterbox_image
 import os
-from tensorflow.keras.utils import multi_gpu_model
+# remove tensorflow.keras.utils import multi_gpu_model as its depreciated ans no obvious replacement
+#from tensorflow.keras.utils import multi_gpu_model
 import tensorflow.compat.v1 as tf
-import tensorflow.python.keras.backend as K
+# Change to new import location for Tensorflow above 2.5.x
+#import tensorflow.python.keras.backend as K
+import tensorflow.compat.v1.keras.backend as K
 
 tf.disable_eager_execution()
 
